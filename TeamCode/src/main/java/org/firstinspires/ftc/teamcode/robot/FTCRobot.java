@@ -1,9 +1,25 @@
 package org.firstinspires.ftc.teamcode.robot;
 
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FTCRobot {
-    private static final String TAG = FTCRobot.class.getSimpleName();
+    /*
+    includes all hardware IDs
+     */
+    private final HardwareMap hardwareMap;
+    private final Map<MotorID, DcMotor> motors = new HashMap<>();
+    public FTCRobot(HardwareMap hardwareMap) {
+        this.hardwareMap = hardwareMap;
+    }
+
+    /* names for robot elements in an enum-based state machine
+    (drive train motors correlate to mecanum drive train motor names in constants class in pedro pathing
+     */
 
     // all motors
     public enum MotorID {
@@ -37,5 +53,35 @@ public class FTCRobot {
 
     }
 
+    // names elements in driver hub configuration
 
+    public static final String FRONT_LEFT_DRIVE_NAME  = "lf";
+    public static final String FRONT_RIGHT_DRIVE_NAME = "rf";
+    public static final String BACK_LEFT_DRIVE_NAME   = "lb";
+    public static final String BACK_RIGHT_DRIVE_NAME  = "rb";
+    public static final String INTAKE_NAME            = "intake";
+    public static final String FLYWHEEL_SHOOTER_NAME  = "flywheelShooter";
+
+    // public static final String DRIVE_TRAIN__NAME = "DRIVE TRAIN";
+
+
+    // servos
+
+    // cameras
+    public static final String LIMELIGHT_CAMERA_NAME = "Limelight Camera";
+
+
+    // connecting drive trains motors in this class and constant class
+    public void init() {
+        // MoterID and name strings connect
+        motors.put(MotorID.FRONT_LEFT_DRIVE,
+                hardwareMap.get(DcMotor.class, FRONT_LEFT_DRIVE_NAME));
+        motors.put(MotorID.FRONT_RIGHT_DRIVE,
+                hardwareMap.get(DcMotor.class, FRONT_RIGHT_DRIVE_NAME));
+        motors.put(MotorID.BACK_LEFT_DRIVE,
+                hardwareMap.get(DcMotor.class, BACK_LEFT_DRIVE_NAME));
+        motors.put(MotorID.BACK_RIGHT_DRIVE,
+                hardwareMap.get(DcMotor.class, BACK_RIGHT_DRIVE_NAME));
+    }
 }
+

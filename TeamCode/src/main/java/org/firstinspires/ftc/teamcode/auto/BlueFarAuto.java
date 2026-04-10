@@ -1,30 +1,35 @@
 package org.firstinspires.ftc.teamcode.auto;
 
+import com.pedropathing.follower.Follower;
+import com.pedropathing.geometry.Pose;
+import com.pedropathing.util.Timer;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.robot.FTCRobot;
 
 //Auto.java class
 @Autonomous (name = "Blue Far")
 public class BlueFarAuto extends LinearOpMode {
-
+    private FTCRobot robot;
+    private Follower follower;
     private static final String TAG = BlueFarAuto.class.getSimpleName();
 
     @Override
     public void runOpMode() throws InterruptedException {
-        // everything here acts like init()
+        // create the robot and initialize hardware
+        FTCRobot robot = new FTCRobot(hardwareMap);
+        robot.init();
+        follower = new Follower(hardwareMap);
+        follower.setStartingPose(new Pose(0, 0, 0));
 
-        telemetry.addData("Initialization", "Successful");
+        telemetry.addData(TAG, "Waiting for start...");
         telemetry.update();
 
-        waitForStart();  // waits for driver to press START
+        waitForStart();
 
-        }
-    if
+        // now use robot here
 
     }
-
 }
 
