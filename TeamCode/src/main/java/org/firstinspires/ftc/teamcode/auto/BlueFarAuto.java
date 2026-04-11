@@ -15,6 +15,7 @@ public class BlueFarAuto extends LinearOpMode {
     private Follower follower;
     private static final String TAG = BlueFarAuto.class.getSimpleName();
 
+
     @Override
     public void runOpMode() throws InterruptedException {
         // create the robot and initialize hardware
@@ -29,6 +30,7 @@ public class BlueFarAuto extends LinearOpMode {
         waitForStart();
 
         // now use robot here
+
 
     }
 }
